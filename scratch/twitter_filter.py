@@ -8,7 +8,7 @@ SAMPLE_SIZE = 8
 
 PORN_SPAM_THRESHOLD = 2
 PORN_SPAM_WORDS = ["fucking", "anal", "videos", "porno", "teen", "lesbian", "gay", "nipple", "mpgs",
-					"hardcore", "asses", "nude", "fucked"]
+					"hardcore", "asses", "nude", "fucked", "guam"]
 
 
 
@@ -58,8 +58,10 @@ def get_tweet_samples(connection, sample_size=SAMPLE_SIZE, remove_links=True):
 	iterator = connection.statuses.sample()
 
 	for tweet in iterator:
+		if not 'id' in tweet:
+			#No id. Deleted tweet?
+			continue 
 		if tweet["id"] in old_ids:
-			print("Already done this tweet, skipping.")
 			continue
 		if tweet.get('lang', None) != "en":
 			continue
