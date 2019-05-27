@@ -26,7 +26,7 @@ def text_to_word_list(text):
 
 	filtered_words = []
 	for i in words:
-		if len(i) == 1 and not i in ('a', 'i'):
+		if len(i) == 1 and not i in ('i'):
 			continue
 		filtered_words.append(i)
 	return filtered_words
